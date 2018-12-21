@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('maincss') ?>
+  </head>
+ <body>
+ <div id="progress">
+ 
+ </div> 
+ <p>
+ Lista błędnych nazwisk:
+ </p>
+  <? for (var i = 0; i < results.length; i++) { ?>
+      <span> 
+         <?= results[i].sheet_name ?>:  <?= results[i].bad_entry ?> <a href="#" onclick="google.script.run.open_tab_by_sheetname(<?= results[i].sheet_name ?>, <?= results[i].row ?>);return false;"> linia <?= results[i].row ?> </a>
+      </span>
+      <br>
+  <? } ?>
+</body>
+</html>
+
+

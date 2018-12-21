@@ -1,0 +1,251 @@
+<html>
+
+<head>
+    <?!= include('s13_cardgen_css') ?>
+	<link rel="stylesheet" href="style.css">
+	<style type="text/css">
+	<!--
+	@media print {
+	 
+	/* Inhaltsbreite setzen, Floats und Margins aufheben */
+	/* Achtung: Die Klassen und IDs variieren von Theme zu Theme. Hier also eigene Klassen setzen */
+	#content, #page {
+	width: 100%; 
+	margin: 0; 
+	float: none;
+	}
+	
+	@page { margin: 0cm }
+	-->
+
+	body {
+	font: 13pt Georgia, "Times New Roman", Times, serif;
+	line-height: 1.3;
+	background: #fff !important;
+	color: #000;
+	}
+	
+@media all {
+.page-break { display: none; }
+}
+
+@media print {
+	.page-break { display: block; page-break-before: always; }
+}
+
+	</style>
+    
+    <script>
+    <?
+    Date.prototype.yyyymmdd = function() {
+         var mm = this.getMonth() + 1; // getMonth() is zero-based
+         var dd = this.getDate();
+    
+         return [this.getFullYear(),
+                 (mm>9 ? '' : '0') + mm,
+                 (dd>9 ? '' : '0') + dd
+                ].join('-');
+    };
+
+    function generate_territory_content(line_data) {
+        var terr_content = {};
+            if (line_data[2] == "") {
+                terr_content['who'] = line_data[3];
+            } else {
+                terr_content['who'] = line_data[2];
+            };
+            date_from = line_data[0];
+            date_to = line_data[1];
+            
+            terr_content['date_from_format'] = new Date(date_from).yyyymmdd();
+            if (date_to instanceof Date) {
+                date_to_format = new Date(date_to).yyyymmdd();
+            } else {
+                date_to_format = "";
+            };
+            terr_content['date_to_format'] = date_to_format;
+        
+        return terr_content;
+    }
+    
+    function calculate_rows_fill(fullfilled_fields_count) {
+         
+        return 26 - fullfilled_fields_count;
+    }
+    ?>
+    </script>
+
+</head>
+
+<body>
+
+<?
+var page_start = 1;
+var breaker_count = 0; 
+var table_divider = 1;
+?>
+<? for (var teren_nr = 1; teren_nr < data.length; teren_nr++) { ?>
+    <? if (teren_nr - page_start == 0) { ?>
+      <div class="main_page">
+		<div class="page_content">
+			<div class="page_header">
+				<div class="carde_title">
+					<span id="card_name">Karta przydziałów terenu</span>
+				</div>
+				<div class="example">
+					<span id="card_name">Przykład:</span>
+					<div class="example_table">
+						<span>Nazwisko głosiciela</span>
+						<span>Data przydziału</span>
+					</div>
+				</div>
+			</div>
+            <div class="main_table">
+            <div class="terr_table_headers">
+            <span>Teren nr <?= teren_nr ?></span>
+            <span>Teren nr <?= teren_nr + 1?></span>
+            <span>Teren nr <?= teren_nr + 2 ?></span>
+            <span>Teren nr <?= teren_nr + 3 ?></span>
+            <span>Teren nr <?= teren_nr + 4?></span>
+            </div>
+    <? } ?>
+                    <? if( teren_nr % 5 == 0) {
+                        
+                        breaker_count += 5; 
+                    } ?>
+                    <? if (teren_nr - table_divider  == 4) { ?>
+                    <table class="terr_table table_5">
+                        <tbody>
+                        <? for (var line = 0; line < data[teren_nr].length; line++) { ?>
+                            <? var content = generate_territory_content(data[teren_nr][line]); ?>
+                            <tr>
+                               <td colspan="2"><?= content.who ?></td>
+                            </tr>
+                            <tr>
+                               <td><?= content.date_from_format ?></td>
+                               <td><?= content.date_to_format ?></td>
+                            </tr>
+                        <? } ?>
+                        <? for (var line2 = 1; line2 < calculate_rows_fill(data[teren_nr].length); line2++) { ?>
+                            <tr>
+                               <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                               <td></td>
+                               <td></td>
+                            </tr>
+                        <? } ?>
+                        </tbody>
+                    </table>
+                    <? }  else if (teren_nr - table_divider == 3) { ?> 
+                    <table class="terr_table table_4">
+                        <tbody>
+                        <? for (var line = 0; line < data[teren_nr].length; line++) { ?>
+                            <? var content = generate_territory_content(data[teren_nr][line]); ?>
+                            <tr>
+                               <td colspan="2"><?= content.who ?></td>
+                            </tr>
+                            <tr>
+                               <td><?= content.date_from_format ?></td>
+                               <td><?= content.date_to_format ?></td>
+                            </tr>
+                        <? } ?>
+                        <? for (var line2 = 1; line2 < calculate_rows_fill(data[teren_nr].length); line2++) { ?>
+                            <tr>
+                               <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                               <td></td>
+                               <td></td>
+                            </tr>
+                        <? } ?>
+                        </tbody>
+                    </table>
+                    <? }  else if (teren_nr - table_divider  == 2) { ?>
+                    <table class="terr_table table_3">
+                        <tbody>
+                        <? for (var line = 0; line < data[teren_nr].length; line++) { ?>
+                            <? var content = generate_territory_content(data[teren_nr][line]); ?>
+                            <tr>
+                               <td colspan="2"><?= content.who ?></td>
+                            </tr>
+                            <tr>
+                               <td><?= content.date_from_format ?></td>
+                               <td><?= content.date_to_format ?></td>
+                            </tr>
+                        <? } ?>
+                        <? for (var line2 = 1; line2 < calculate_rows_fill(data[teren_nr].length); line2++) { ?>
+                            <tr>
+                               <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                               <td></td>
+                               <td></td>
+                            </tr>
+                        <? } ?>                        
+                        </tbody>
+                    </table>
+                    <? }  else if (teren_nr - table_divider  == 1) { ?>
+                    <table class="terr_table table_2">
+                        <tbody>
+                        <? for (var line = 0; line < data[teren_nr].length; line++) { ?>
+                            <? var content = generate_territory_content(data[teren_nr][line]); ?>
+                            <tr>
+                               <td colspan="2"><?= content.who ?></td>
+                            </tr>
+                            <tr>
+                               <td><?= content.date_from_format ?></td>
+                               <td><?= content.date_to_format ?></td>
+                            </tr>
+                        <? } ?>
+                        <? for (var line2 = 1; line2 < calculate_rows_fill(data[teren_nr].length); line2++) { ?>
+                            <tr>
+                               <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                               <td></td>
+                               <td></td>
+                            </tr>
+                        <? } ?>                        
+                        </tbody>
+                    </table>
+                    <? }  else if (teren_nr - table_divider  == 0) { ?>
+                    <table class="terr_table table_1">
+                        <tbody>
+                        <? for (var line = 0; line < data[teren_nr].length; line++) { ?>
+                            <? var content = generate_territory_content(data[teren_nr][line]); ?>
+                            <tr>
+                               <td colspan="2"><?= content.who ?></td>
+                            </tr>
+                            <tr>
+                               <td><?= content.date_from_format ?></td>
+                               <td><?= content.date_to_format ?></td>
+                            </tr>
+                        <? } ?>
+                        <? for (var line2 = 1; line2 < calculate_rows_fill(data[teren_nr].length); line2++) { ?>
+                            <tr>
+                               <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                               <td></td>
+                               <td></td>
+                            </tr>
+                        <? } ?>                        
+                        </tbody>
+                    </table>
+                    <? } ?>     
+                    <? if( teren_nr % 5 == 0) {
+                        table_divider += 5;
+                        page_start += 5;
+                    } ?>
+         <? if (teren_nr % breaker_count == 0 ) { ?>
+            </div>
+            <div class="page_footer">Footerek</div>
+            </div>
+            </div>
+            <div class="page-break"></div>
+        <? } ?>
+  <? } ?>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script>
+      function onSuccess(obj) {
+        var newWin = open('url','windowName');
+        newWin.document.write(obj);
+      }
+
+     function generate_cards() {
+          google.script.run.withSuccessHandler(onSuccess).generate_territory_cards();
+     }
+    </script>
+  </head>
+  <body style="font-family: Arial; font-size:15px;text-align:center;">
+  <div style=";float:left;padding:5px;text-align: center;background-color: #1B4F72;margin:1px">
+    <a href="#" onclick="generate_cards();return false;" style="text-decoration:none; color: white; font-family: Arial; font-size:13px">Generuj karty terenów</a>
+  </div>  
+  </body>
+</html>
+
+

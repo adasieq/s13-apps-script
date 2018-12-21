@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('maincss') ?>
+  </head>
+ <body>
+ <div id="progress">
+ 
+ </div>
+ <span style="font-family: Arial; font-size:18px;text-align:center;">
+ Lista terenów
+ </span>
+ <div style="margin: 15px;">
+  <? for (var i = 1; i < 143; i++) { ?>
+      <div style="width:23px;height:17px;float:left;padding:5px;text-align: center;background-color: #1B4F72;margin:1px"> 
+        <a style="text-decoration:none; color: white; font-family: Arial; font-size:13px" href="#" onclick="google.script.run.open_tab_by_sheetname(<?= 'Teren nr ' +  i ?>, 0);return false;"> <?= i ?> </a>
+      </div>
+ <? } ?>
+  </div>
+  <div style="width:90%;float:left;padding:5px;background-color: #17A589;margin:15px">
+  <span style="font-family: Arial; font-size:18px;text-align:center;">
+      <a style="text-decoration:none; color: white; font-family: Arial; font-size:13px" href="#" onclick="google.script.run.open_tab_by_sheetname('Lista terenów', null);return false;">Liste terenów</a>
+  </span>
+  <br>
+  <span style="font-family: Arial; font-size:18px;text-align:center;">
+      <a style="text-decoration:none; color: white; font-family: Arial; font-size:13px" href="#" onclick="google.script.run.open_tab_by_sheetname('WZ*', null);return false;">WZ*</a>
+  </span>
+  <br>
+    <span style="font-family: Arial; font-size:18px;text-align:center;">
+      <a style="text-decoration:none; color: white; font-family: Arial; font-size:13px" href="#" onclick="google.script.run.open_tab_by_sheetname('Wolne grupowe', null);return false;">Wolne grupowe</a>
+  </span>
+  <br>
+    <span style="font-family: Arial; font-size:18px;text-align:center;">
+      <a style="text-decoration:none; color: white; font-family: Arial; font-size:13px" href="#" onclick="google.script.run.open_tab_by_sheetname('Wolne indywidualne', null);return false;">Wolne indywidualne</a>
+  </span>
+  </div>
+</body>
+</html>

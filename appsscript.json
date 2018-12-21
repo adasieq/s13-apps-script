@@ -1,0 +1,37 @@
+{
+  "timeZone": "Europe/Paris",
+  "dependencies": {
+  },
+  "webapp": {
+    "access": "ANYONE",
+    "executeAs": "USER_ACCESSING"
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "sheets": {
+    "macros": [{
+      "menuName": "Makro bez nazwy",
+      "functionName": "Makrobeznazwy"
+    }, {
+      "menuName": "Kopiowanie grup/indyw",
+      "functionName": "myFunction",
+      "defaultShortcut": "Ctrl+Alt+Shift+5"
+    }, {
+      "menuName": "fasterSheetActivation",
+      "functionName": "fasterSheetActivation",
+      "defaultShortcut": "Ctrl+Alt+Shift+2"
+    }, {
+      "menuName": "goTo",
+      "functionName": "goTo",
+      "defaultShortcut": "Ctrl+Alt+Shift+1"
+    }, {
+      "menuName": "get_territory_type_from_terrtory_card",
+      "functionName": "get_territory_type_from_terrtory_card"
+    }, {
+      "menuName": "set_territory_type_condition",
+      "functionName": "set_territory_type_condition"
+    }, {
+      "menuName": "set_cond_format_rules",
+      "functionName": "set_cond_format_rules"
+    }]
+  }
+}
