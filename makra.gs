@@ -161,7 +161,7 @@ function set_territory_assigned() {
 
 function extend_territory_card() {
 
-  for (var number = 21; number <= 25; number++) {
+  for (var number = 12; number <= 12; number++) {
     var territorySheet = source.getSheetByName("Teren nr " + number);
     if (territorySheet.getMaxColumns() < 7){
        territorySheet.insertColumnAfter(5);

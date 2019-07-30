@@ -203,7 +203,7 @@ function makeLinks() {
 function deleteEntriesWZ() {
   //Usunięcie starych wartości z WZ
   var WZ = source.getSheetByName("WZ*");
-  var WZRange = WZ.getRange("A6:G");
+  var WZRange = WZ.getRange("A6:I");
   WZRange.clearContent();
 }
 
@@ -217,7 +217,7 @@ function copyEntriesWZ() {
   for (var number = firstTerritory; number <= lastTerritory; number++) {
       var territorySheet = source.getSheetByName("Teren nr " + number);
       var territorySheetLink = (['=HYPERLINK("'+ sourceURL +'#gid=' +  territorySheet.getSheetId() + '";"' + number + '")']);  
-      var territoryData = territorySheet.getDataRange().getValues().slice(6);
+      var territoryData = territorySheet.getDataRange().getValues().slice(7);
       territoryData.forEach(function(current_value) {
                  current_value.unshift(territorySheetLink);
                  current_value.push('=if(AND(INDIRECT(ADDRESS(ROW();4))="";INDIRECT(ADDRESS(ROW();5))<>"");"indywidualny"; "grupowy")')
@@ -230,7 +230,7 @@ function copyEntriesWZ() {
   };
   var territoryDataListFlatten = Array.prototype.concat.apply([], territoryDataList);
   var territoryDataSize = territoryDataListFlatten.length + 6 - 1;
-  WZ.getRange("A6:G" + territoryDataSize).setValues(territoryDataListFlatten);
+  WZ.getRange("A6:I" + territoryDataSize).setValues(territoryDataListFlatten);
   var durtion = Math.round((Date.now() - start)/1000);
   timeStamp(territoryDataListFlatten.length, durtion);
   source.toast("ROWS: " + territoryDataListFlatten.length + " TIME: " + durtion, "Koniec", 4);
