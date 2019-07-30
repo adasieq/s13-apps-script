@@ -73,8 +73,9 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Funkcje skryptowe')
   .addSubMenu(SpreadsheetApp.getUi().createMenu('WZ*...')
-              .addItem('Wyczyść WZ*', 'deleteEntriesWZ')
               .addItem('Aktualizuj WZ*', 'copyEntriesWZmanually')
+              .addSeparator()
+              .addItem('Wyczyść WZ*', 'deleteEntriesWZ')
               .addSeparator()
               .addItem('Sortuj rosnąco wg daty przydzielenia', 'sortWZAssignDateAscending')
               .addItem('Sortuj malejąco wg daty przydzielenia', 'sortWZAssignDateDescending')
